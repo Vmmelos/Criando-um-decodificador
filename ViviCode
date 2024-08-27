@@ -1,0 +1,78 @@
+!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Decodificador</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #c25cb6;
+        }
+        textarea, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd5e2;
+            background-color: #e9d8e9;
+            width: 80%;
+            max-width: 600px;
+            word-wrap: break-word;
+            display: none;
+        }
+        #image {
+            margin-top: 20px;
+            width: 80%;
+            max-width: 600px;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Meu Decodificador</h1>
+    <textarea id="inputText" rows="4" cols="50" placeholder="Digite o texto aqui..."></textarea>
+    <div>
+        <button onclick="encryptText()">Criptografar</button>
+        <button onclick="decryptText()">Descriptografar</button>
+    </div>
+    <img id="image" src="c:\Users\vmmel\Downloads\Frame 5 (1).png" alt="Imagem de exemplo">
+    <div id="result"></div>
+    <footer>Vioria Melo</footer>
+
+    <script>
+        function encryptText() {
+            const inputText = document.getElementById('inputText').value;
+            const encryptedText = btoa(inputText); // Função de criptografia simples (Base64)
+            document.getElementById('result').innerText = encryptedText;
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('image').style.display = 'none';
+        }
+
+        function decryptText() {
+            const inputText = document.getElementById('inputText').value;
+            try {
+                const decryptedText = atob(inputText); // Função de descriptografia simples (Base64)
+                document.getElementById('result').innerText = decryptedText;
+                document.getElementById('result').style.display = 'block';
+                document.getElementById('image').style.display = 'none';
+            } catch (e) {
+                document.getElementById('result').innerText = 'Texto inválido para descriptografia!';
+                document.getElementById('result').style.display = 'block';
+                document.getElementById('image').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
